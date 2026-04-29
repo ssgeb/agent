@@ -1,0 +1,143 @@
+app:
+  name: travel-planner
+  version: 1.0.0
+  debug: true
+
+llm:
+  provider: aliyun
+  model: qwen-plus
+  base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+  api_key: ""
+  max_tokens: 1000
+  temperature: 0.7
+
+features:
+  use_mock_only: false
+  enable_amap_mcp: false
+  enable_agent_reach: true
+  enable_real_providers: true
+
+tools:
+  timeout_seconds: 30
+
+session:
+  timeout: 3600
+  max_history_length: 50
+
+database:
+  driver: sqlite
+  sqlite_path: ./travel_planner.db
+  database_url: ""
+  mysql:
+    host: 127.0.0.1
+    port: 3306
+    user: root
+    password: ""
+    database: travel_planner
+
+redis:
+  url: ""
+
+tasks:
+  max_retries: 3
+  session_lock_ttl_seconds: 60
+  idempotency_key_ttl_seconds: 86400
+  recovery_stale_seconds: 300
+
+providers:
+  transport:
+    enabled: true
+    primary: ctrip
+    fallback: mock
+    ctrip:
+      enabled: true
+      cookie: ""
+      user_agent: ""
+      timeout_seconds: 10
+    fliggy:
+      enabled: false
+      cookie: ""
+      user_agent: ""
+      timeout_seconds: 10
+
+  hotel:
+    enabled: true
+    primary: meituan
+    fallback: mock
+    meituan:
+      enabled: true
+      cookie: ""
+      user_agent: ""
+      timeout_seconds: 10
+    ctrip:
+      enabled: false
+      cookie: ""
+      user_agent: ""
+      timeout_seconds: 10
+    fliggy:
+      enabled: false
+      cookie: ""
+      user_agent: ""
+      timeout_seconds: 10
+
+  map:
+    enabled: true
+    primary: amap
+    fallback: mock
+    amap:
+      enabled: true
+      api_key: ""
+      timeout_seconds: 10
+
+  weather:
+    enabled: true
+    primary: qweather
+    fallback: mock
+    qweather:
+      enabled: true
+      api_key: ""
+      timeout_seconds: 10
+
+agent_reach:
+  enabled: true
+  timeout_seconds: 10
+  channels:
+    web:
+      enabled: true
+    rss:
+      enabled: true
+    xiaohongshu:
+      enabled: false
+      cookie: ""
+    douyin:
+      enabled: false
+      cookie: ""
+    weibo:
+      enabled: false
+      cookie: ""
+    bilibili:
+      enabled: false
+      cookie: ""
+    youtube:
+      enabled: false
+      cookies_file: ""
+
+amap_mcp:
+  # provider 决定当前启用哪套配置：
+  #   aliyun -> 阿里云百炼 Amap Maps MCP
+  #   amap   -> 高德官方 MCP
+  provider: aliyun
+
+  aliyun:
+    mode: streamable-http
+    sse_url: "https://dashscope.aliyuncs.com/api/v1/mcps/amap-maps/mcp"
+    api_key: ""
+
+  amap:
+    mode: streamable-http
+    sse_url: "https://mcp.amap.com/mcp"
+    api_key: ""
+    command:
+      - npx
+      - -y
+      - "@amap/amap-maps-mcp-server"

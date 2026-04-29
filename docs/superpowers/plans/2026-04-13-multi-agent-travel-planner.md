@@ -6,7 +6,35 @@
 
 **Architecture:** 采用 `API -> Service -> Agent -> Tools -> State` 五层结构。`PlannerAgent` 负责意图识别、状态更新和子 Agent 路由；子 Agent 只依赖统一工具接口，使用 `MockProvider` 保证首版可运行。所有会话与旅行状态统一通过 `StateManager` 管理，避免跨层耦合。
 
-**Tech Stack:** Python 3.11、FastAPI、Pydantic v2、pytest、pytest-asyncio、httpx
+**Tech Stack:** Python 3.10、FastAPI、Pydantic v2、pytest、pytest-asyncio、httpx
+
+## 开发环境约定（Conda）
+
+- 统一使用 `conda` 的 `leetcode` 环境进行开发、测试与运行。
+- 首次创建环境（若不存在）：
+
+```bash
+conda create -n leetcode python=3.10 -y
+```
+
+- 每次开始开发前激活环境：
+
+```bash
+conda activate leetcode
+```
+
+- 安装依赖建议在该环境内执行（示例）：
+
+```bash
+pip install fastapi==0.135.2 pydantic==2.12.5 pydantic-settings==2.13.1 uvicorn==0.41.0 httpx==0.28.1 pytest pytest-asyncio
+```
+
+## 代码注释规范（中文）
+
+- 本计划内所有新增或修改的业务代码，需补充中文注释。
+- 注释重点放在「意图识别逻辑」「状态变更逻辑」「工具调用与回退策略」「错误处理分支」等不直观部分。
+- 避免逐行翻译式注释；简单赋值、直观语句不强制注释。
+- 函数/类如存在关键输入输出约束，优先在定义处增加简短中文说明。
 
 ---
 

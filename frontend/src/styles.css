@@ -1,0 +1,405 @@
+:root {
+  color-scheme: light;
+  font-family:
+    Inter, "Segoe UI", Roboto, Helvetica, Arial, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #123036;
+  background: #eef3f1;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  background: #eef3f1;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  min-height: 44px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+}
+
+input {
+  min-height: 44px;
+  width: 100%;
+  border: 1px solid #b5c5c0;
+  border-radius: 8px;
+  padding: 0.75rem 0.875rem;
+  background: #ffffff;
+  color: #123036;
+}
+
+textarea {
+  width: 100%;
+  min-height: 120px;
+  border: 1px solid #b5c5c0;
+  border-radius: 8px;
+  padding: 0.875rem;
+  resize: vertical;
+  background: #ffffff;
+  color: #123036;
+}
+
+input:focus-visible,
+button:focus-visible {
+  outline: 3px solid #2d7f73;
+  outline-offset: 2px;
+}
+
+.auth-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.auth-panel {
+  width: min(100%, 420px);
+  background: #ffffff;
+  border: 1px solid #c9d7d2;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 24px rgba(18, 48, 54, 0.08);
+}
+
+.auth-panel h1 {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+}
+
+.auth-form {
+  display: grid;
+  gap: 0.875rem;
+}
+
+.auth-form label {
+  display: grid;
+  gap: 0.375rem;
+}
+
+.auth-form span {
+  font-size: 0.95rem;
+}
+
+.primary-button {
+  background: #2d7f73;
+  color: #ffffff;
+}
+
+.primary-button:hover {
+  background: #276d63;
+}
+
+.secondary-button {
+  background: #eef4f2;
+  color: #123036;
+  border-color: #c9d7d2;
+}
+
+.secondary-button:hover {
+  background: #e1ebe7;
+}
+
+.form-error {
+  margin: 0;
+  color: #a11f2d;
+}
+
+.chat-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #eef3f1;
+}
+
+.chat-topbar {
+  min-height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: #123036;
+  color: #f4faf8;
+}
+
+.brand {
+  font-weight: 700;
+}
+
+.chat-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.user-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.user-chip .secondary-button,
+.chat-topbar-actions .secondary-button {
+  background: #f2f7f5;
+  color: #123036;
+}
+
+.chat-layout {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: calc(100vh - 64px);
+}
+
+.chat-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 1.25rem 0;
+}
+
+.message-list {
+  flex: 1;
+  display: grid;
+  align-content: start;
+  gap: 0.875rem;
+  width: 100%;
+  min-height: 280px;
+}
+
+.message-empty {
+  display: grid;
+  place-items: center;
+  min-height: 280px;
+  padding: 2rem 0;
+}
+
+.message-empty p {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  color: #123036;
+}
+
+.message {
+  max-width: min(100%, 760px);
+  border: 1px solid #c9d7d2;
+  border-radius: 8px;
+  padding: 0.875rem 1rem;
+  background: #ffffff;
+  color: #123036;
+}
+
+.message p {
+  margin: 0.25rem 0 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.message-role {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #48635c;
+}
+
+.message-user {
+  margin-left: auto;
+  background: #eef7f4;
+}
+
+.message-assistant {
+  margin-right: auto;
+  background: #ffffff;
+}
+
+.message-status {
+  margin-right: auto;
+  background: #f6faf8;
+  border-style: dashed;
+}
+
+.plan-launcher {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.chat-composer {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem 1.25rem;
+  border-top: 1px solid #d5e0db;
+  background: linear-gradient(180deg, rgba(238, 243, 241, 0.88), #eef3f1 32%);
+}
+
+.chat-composer label {
+  font-weight: 700;
+  color: #123036;
+}
+
+.chat-composer-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.chat-composer .primary-button {
+  min-width: 120px;
+}
+
+.side-drawer {
+  position: fixed;
+  top: 64px;
+  right: 0;
+  bottom: 0;
+  width: min(100vw, 420px);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border-left: 1px solid #c9d7d2;
+  background: #f8fbfa;
+  box-shadow: -12px 0 28px rgba(18, 48, 54, 0.12);
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 30;
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.drawer-header h2,
+.drawer-section h3 {
+  margin: 0;
+}
+
+.drawer-section {
+  display: grid;
+  gap: 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #dbe5e0;
+}
+
+.drawer-section:last-child {
+  border-bottom: 0;
+}
+
+.drawer-empty {
+  margin: 0;
+  color: #48635c;
+}
+
+.drawer-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.drawer-list li {
+  overflow-wrap: anywhere;
+}
+
+.drawer-list strong {
+  display: block;
+}
+
+.drawer-list span {
+  display: block;
+  color: #48635c;
+}
+
+.drawer-definition-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.drawer-definition-list div {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.drawer-definition-list dt {
+  font-weight: 700;
+}
+
+.drawer-definition-list dd {
+  margin: 0;
+  color: #48635c;
+  overflow-wrap: anywhere;
+}
+
+.chat-empty-state {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.chat-empty-state p {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .auth-panel {
+    padding: 1.25rem;
+  }
+
+  .chat-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .chat-main {
+    padding-inline: 1rem;
+  }
+
+  .chat-composer {
+    padding-inline: 1rem;
+  }
+
+  .side-drawer {
+    top: 0;
+    width: 100vw;
+  }
+}

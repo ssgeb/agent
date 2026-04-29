@@ -5,7 +5,16 @@ __pycache__/
 .venv/
 venv/
 .env
+config.yaml
+config.local.yaml
+*.cookies.txt
+cookies/
 dist/
 build/
 *.egg-info/
 .worktrees/
+frontend/dist/
+frontend/tsconfig.tsbuildinfo
+frontend/node_modules/
+*-dev.out.log
+*-dev.err.log

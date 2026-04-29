@@ -1,1 +1,1 @@
-"""Multi-agent travel planner backend."""
+"""Multi-agent travel planner backend package."""
